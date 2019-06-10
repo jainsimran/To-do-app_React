@@ -1,0 +1,12 @@
+.strikeout{
+    text-decoration: line-through;
+}
+body{
+    margin: 5%;
+}
+h1 {
+    font-size: 30px;
+}
+h2{
+    font-size: 25px;
+}
