@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
- const itemsList = [
+// array of list to do 
+ let itemsList = [
      {
        name: 'Laundry',
        description: 'Wash all the clothes',
@@ -34,13 +35,71 @@ import './index.css';
        done: false
      },
      {
-       name: 'Clear',
-       description: 'Study for psychology test',
+       name: 'Clean',
+       description: 'Clean my room',
+       done: false
+     },
+     {
+       name: 'Buy gift',
+       description: 'Buy gift for sister',
+       done: false
+     },
+     {
+       name: 'Quize',
+       description: 'Complete online quize',
+       done: false
+     },
+     {
+       name: 'Call mom',
+       description: 'Call mom in morning',
        done: false
      }
 ];
 
+//  main react component with constructor 
+class App extends React.Component {
+  constructor() {
+     super();
+     this.state = {
+       toDoItems: itemsList
+     };
+     this.done = this.done.bind(this);
+     this.remove = this.remove.bind(this);
+  }
 
+  done(itemIndex) {
+    let tempList = this.state.toDoItems;
+    tempList[itemIndex].done = !tempList[itemIndex].done;
+    
+    this.setState({
+      toDoItems: tempList
+    });
+  }
+
+  remove(itemIndex){
+    let newList = this.state.toDoItems;
+    newList.splice(itemIndex, 1);
+      if(newList.length === 0){
+        console.log('Hey your task list is completed. Now watch netflix and relax');
+      }
+    this.setState({
+     toDoItems: newList
+    });
+  }
+
+ 
+  render() {
+    return (
+        <section>
+          <h1>To Do List</h1>
+          {/* <AddNewTask /> */}
+          <TaskList items={this.state.toDoItems} doneButtonHandler={this.done} removeButtonHandler={this.remove} />
+        </section>
+    );
+  }
+}
+
+// react component 
  class TaskList extends React.Component {
      render() {
       return(
@@ -54,6 +113,7 @@ import './index.css';
      }
  }
 
+//  functional component doing action on clicking done/undone and remove button
 function Task(props) {
        return (
        <section className={props.item.done ? 'strikeout' : 'item'}>
@@ -67,43 +127,49 @@ function Task(props) {
       ); 
  } 
 
- class App extends React.Component {
-   constructor() {
-      super();
-      this.state = {
-        toDoItems: itemsList
-      };
-      this.done = this.done.bind(this);
-      this.remove = this.remove.bind(this);
-   }
+// //  component for form
+// class AddNewTask extends React.Component{
+//   constructor(){
+//     super();
+//     this.handelInputChange = this.handelInputChange.bind(this);
+//   }
 
-   done(itemIndex) {
-     let tempList = this.state.toDoItems;
-     tempList[itemIndex].done = true;
-     this.setState({
-       toDoItems: tempList
-     });
-   }
+//   handelInputChange(event){
+//     let target= event.target;
+//     let value= target.name ==='taskName' ? target.value : target.value;
+//     let name= target.name;
 
-   remove(itemIndex){
-     let newList = this.state.toDoItems;
-     newList.splice(itemIndex, 1);
-     this.setState({
-      toDoItems: newList
-     });
-   }
+//     this.setState({
+//       [name]: value
+//     })
+//   }
+
+  // render(){
+  //   return(
+  //     <section>
+  //     <form>
+  //       <label>
+  //         <h2>Add new task in list.</h2>
+  //       <input
+  //         type="text"
+  //         name="taskName" 
+  //         value={this.state.taskName} 
+  //         onChange={this.handelInputChange} 
+  //         placeholder="add task name here." />
+  //       <input 
+  //         type="text" 
+  //         name="taskDesc" 
+  //         value={this.state.taskName} 
+  //         onChange={this.handelInputChange} 
+  //         placeholder="add task description here." />
+  //       <button type="button" > Submit </button>
+  //       </label>
+  //     </form> 
+  //   </section>
+  //   );
+  // }
 
 
-
-   render() {
-     return (
-         <section>
-           <h1>To Do List</h1>
-           <TaskList items={this.state.toDoItems} doneButtonHandler={this.done} removeButtonHandler={this.remove}/>
-         </section>
-     );
-   }
- }
   // ========================================
   ReactDOM.render(
    <App />,
