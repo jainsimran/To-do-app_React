@@ -1,14 +1,9 @@
+/* styling */
 body {
     background-color: #01ad9d;
     margin: 50px 50px;
 }
 
-/* style when user hit done button */
-.strikeout{
-    text-decoration: line-through;
-}
-
-/* todo list heading */
 h1 {
     font-family: serif;
     font-size: 35px;
@@ -23,6 +18,11 @@ h2{
 
 p{
     font-size: 16px;
+}
+
+/* style when user hit done button */
+.strikeout{
+    text-decoration: line-through;
 }
 
 /* for items in section and form */

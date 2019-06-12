@@ -3,57 +3,57 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 // array of list to do 
- let itemsList = [
-     {
-       name: 'Laundry',
-       description: 'Wash all the clothes',
-       done: false
-     },
-     {
-       name: 'Homework',
-       description: 'Complete english assignemnt',
-       done: false
-     },
-     {
-       name: 'Dishes',
-       description: 'Clean all the dishes',
-       done: false
-     },
-     {
-       name: 'Portfolio',
-       description: 'Make portfolio for co op',
-       done: false
-     },
-     {
-       name: 'Grocery shopping',
-       description: 'Buy vegetables and fruits',
-       done: false
-     },
-     {
-       name: 'Study',
-       description: 'Study for psychology test',
-       done: false
-     },
-     {
-       name: 'Clean',
-       description: 'Clean my room',
-       done: false
-     },
-     {
-       name: 'Buy gift',
-       description: 'Buy gift for sister',
-       done: false
-     },
-     {
-       name: 'Quize',
-       description: 'Complete online quize',
-       done: false
-     },
-     {
-       name: 'Call mom',
-       description: 'Call mom in morning',
-       done: false
-     }
+let itemsList = [
+  {
+    name: 'Laundry',
+    description: 'Wash all the clothes',
+    done: false
+  },
+  {
+    name: 'Homework',
+    description: 'Complete english assignemnt',
+    done: false
+  },
+  {
+    name: 'Dishes',
+    description: 'Clean all the dishes',
+    done: false
+  },
+  {
+    name: 'Portfolio',
+    description: 'Make portfolio for co op',
+    done: false
+  },
+  {
+    name: 'Grocery shopping',
+    description: 'Buy vegetables and fruits',
+    done: false
+  },
+  {
+    name: 'Study',
+    description: 'Study for psychology test',
+    done: false
+  },
+  {
+    name: 'Clean',
+    description: 'Clean my room',
+    done: false
+  },
+  {
+    name: 'Buy gift',
+    description: 'Buy gift for sister',
+    done: false
+  },
+  {
+    name: 'Quize',
+    description: 'Complete online quize',
+    done: false
+  },
+  {
+    name: 'Call mom',
+    description: 'Call mom in morning',
+    done: false
+  }
 ];
 
 //  main react component with constructor 
@@ -120,7 +120,6 @@ class App extends React.Component {
             item={item} 
             doneButtonHandler={() => this.props.doneButtonHandler(index)} 
             removeButtonHandler={() => this.props.removeButtonHandler(index)}/>)
-      
       ))
      }
  }
