@@ -70,7 +70,6 @@ class App extends React.Component {
   done(itemIndex) {
     let tempList = this.state.toDoItems;
     tempList[itemIndex].done = !tempList[itemIndex].done;
-    
     this.setState({
       toDoItems: tempList
     });
@@ -79,13 +78,11 @@ class App extends React.Component {
   remove(itemIndex){
     let newList = this.state.toDoItems;
     newList.splice(itemIndex, 1);
-      if(newList.length === 0){
-        console.log('Hey your task list is completed. Now watch netflix and relax');
-      }
     this.setState({
      toDoItems: newList
     });
   }
+
 
  
   render() {
@@ -93,6 +90,10 @@ class App extends React.Component {
         <section>
           <h1>To Do List</h1>
           {/* <AddNewTask /> */}
+          <section> {
+            this.state.toDoItems.length === 0 ? <p>Hey your task list is completed. Now watch netflix and relax</p> : null 
+          }
+          </section>
           <TaskList items={this.state.toDoItems} doneButtonHandler={this.done} removeButtonHandler={this.remove} />
         </section>
     );
@@ -129,45 +130,31 @@ function Task(props) {
 
 // //  component for form
 // class AddNewTask extends React.Component{
-//   constructor(){
-//     super();
-//     this.handelInputChange = this.handelInputChange.bind(this);
+//    render(){
+//     return(
+//       <section>
+//       <form>
+//         <label>
+//           <h2>Add new task in list.</h2>
+//         <input
+//           type="text"
+//           name="taskName" 
+//           value={this.taskName} 
+//           onChange={this.handelInputChange} 
+//           placeholder="add task name here." />
+//         <input 
+//           type="text" 
+//           name="taskDesc" 
+//           value={this.taskDesc} 
+//           onChange={this.handelInputChange} 
+//           placeholder="add task description here." />
+//         <button type="button" > Submit </button>
+//         </label>
+//       </form> 
+//     </section>
+//     );
 //   }
-
-//   handelInputChange(event){
-//     let target= event.target;
-//     let value= target.name ==='taskName' ? target.value : target.value;
-//     let name= target.name;
-
-//     this.setState({
-//       [name]: value
-//     })
-//   }
-
-  // render(){
-  //   return(
-  //     <section>
-  //     <form>
-  //       <label>
-  //         <h2>Add new task in list.</h2>
-  //       <input
-  //         type="text"
-  //         name="taskName" 
-  //         value={this.state.taskName} 
-  //         onChange={this.handelInputChange} 
-  //         placeholder="add task name here." />
-  //       <input 
-  //         type="text" 
-  //         name="taskDesc" 
-  //         value={this.state.taskName} 
-  //         onChange={this.handelInputChange} 
-  //         placeholder="add task description here." />
-  //       <button type="button" > Submit </button>
-  //       </label>
-  //     </form> 
-  //   </section>
-  //   );
-  // }
+// }
 
 
   // ========================================
@@ -175,4 +162,6 @@ function Task(props) {
    <App />,
    document.getElementById('root')
  );
- 
+
+
+
