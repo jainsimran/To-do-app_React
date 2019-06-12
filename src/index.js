@@ -65,6 +65,7 @@ class App extends React.Component {
      };
      this.done = this.done.bind(this);
      this.remove = this.remove.bind(this);
+     this.add = this.add.bind(this);
   }
 
   // function to toggle for done / undone
@@ -85,13 +86,20 @@ class App extends React.Component {
     });
   }
 
-
+  // function to add task in list
+  add(item){
+    let newList =  this.state.toDoItems;
+    newList.unshift(item);
+    this.setState({
+      toDoItems: newList
+    });
+  }
  
   render() {
     return (
         <section>
           <h1>To Do List</h1>
-          <AddNewTask />
+          <AddNewTask additem={this.add} />
           {/* notify the user when list is empty */}
           <section> {
             this.state.toDoItems.length === 0 ? <p>Hey your task list is completed. Now watch netflix and relax.</p> : null 
@@ -131,8 +139,47 @@ function Task(props) {
       ); 
  } 
 
-//  component for form
+//  react component for form
 class AddNewTask extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+      name: "",
+      description: ""
+    };
+    this.changeName = this.changeName.bind(this);
+    this.changeDesc = this.changeDesc.bind(this);
+    this.addTask = this.addTask.bind(this);
+  }
+
+  // function to change name of task
+  changeName(event){
+    this.setState({
+      name: event.target.value
+    });
+  }
+
+  // function to change decription of task
+  changeDesc(event){
+    this.setState({
+      description: event.target.value
+    });
+  }
+
+  // function to add task in list
+  addTask(){
+    let newTask = {
+      name: this.state.name,
+      description: this.state.description,
+      done: false
+    };
+    this.props.additem(newTask);
+    this.setState({
+      name: "",
+      description: ""
+    });
+  }
+
    render(){
     return(
       <section>
@@ -142,16 +189,16 @@ class AddNewTask extends React.Component{
         <input
           type="text"
           name="taskName" 
-          value={this.taskName} 
-          onChange={this.handelInputChange} 
+          value={this.state.name} 
+          onChange={this.changeName} 
           placeholder="add task name." />
         <input 
           type="text" 
           name="taskDesc" 
-          value={this.taskDesc} 
-          onChange={this.handelInputChange} 
+          value={this.state.description} 
+          onChange={this.changeDesc} 
           placeholder="add task description." />
-        <button type="button" > Submit </button>
+        <button type="button" onClick={this.addTask}> Submit </button>
         </label>
       </form> 
     </section>
@@ -159,12 +206,8 @@ class AddNewTask extends React.Component{
   }
 }
 
-
   // ========================================
   ReactDOM.render(
    <App />,
    document.getElementById('root')
  );
-
-
-
