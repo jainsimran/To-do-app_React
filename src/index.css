@@ -1,36 +1,42 @@
 body {
-    background-color: papayawhip;
+    background-color: #01ad9d;
     margin: 50px 50px;
 }
+
+/* style when user hit done button */
 .strikeout{
     text-decoration: line-through;
 }
 
+/* todo list heading */
 h1 {
-    text-align: center;
-    font-family: monospace;
+    font-family: serif;
     font-size: 35px;
-    /* margin: 50px 150px; */
+    text-decoration: underline;
+    text-align: center;
 }
 
 h2{
     margin: 0;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 p{
-    font-size: 20px;
+    font-size: 16px;
 }
+
+/* for items in section and form */
 section.item ,.strikeout ,form{
     padding: 10px;
-    border: 2px #FF9800 solid;
+    border: 4px #9E9E9E solid;
     background-color: snow;
-    text-align: center;
+    font-family: sans-serif;
     margin: 20px 20px;
+    border-radius: 10px;
 }
 
 section>p {
     padding: 5px;
-    background-color: #dad8d6;
-    text-align: center;
+    background-color: #e2e2e2;
+    border-radius: 5px;
 }

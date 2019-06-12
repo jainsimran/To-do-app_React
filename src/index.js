@@ -67,6 +67,7 @@ class App extends React.Component {
      this.remove = this.remove.bind(this);
   }
 
+  // function to toggle for done / undone
   done(itemIndex) {
     let tempList = this.state.toDoItems;
     tempList[itemIndex].done = !tempList[itemIndex].done;
@@ -75,6 +76,7 @@ class App extends React.Component {
     });
   }
 
+  // function to delete list item from list
   remove(itemIndex){
     let newList = this.state.toDoItems;
     newList.splice(itemIndex, 1);
@@ -89,9 +91,10 @@ class App extends React.Component {
     return (
         <section>
           <h1>To Do List</h1>
-          {/* <AddNewTask /> */}
+          <AddNewTask />
+          {/* notify the user when list is empty */}
           <section> {
-            this.state.toDoItems.length === 0 ? <p>Hey your task list is completed. Now watch netflix and relax</p> : null 
+            this.state.toDoItems.length === 0 ? <p>Hey your task list is completed. Now watch netflix and relax.</p> : null 
           }
           </section>
           <TaskList items={this.state.toDoItems} doneButtonHandler={this.done} removeButtonHandler={this.remove} />
@@ -128,33 +131,33 @@ function Task(props) {
       ); 
  } 
 
-// //  component for form
-// class AddNewTask extends React.Component{
-//    render(){
-//     return(
-//       <section>
-//       <form>
-//         <label>
-//           <h2>Add new task in list.</h2>
-//         <input
-//           type="text"
-//           name="taskName" 
-//           value={this.taskName} 
-//           onChange={this.handelInputChange} 
-//           placeholder="add task name here." />
-//         <input 
-//           type="text" 
-//           name="taskDesc" 
-//           value={this.taskDesc} 
-//           onChange={this.handelInputChange} 
-//           placeholder="add task description here." />
-//         <button type="button" > Submit </button>
-//         </label>
-//       </form> 
-//     </section>
-//     );
-//   }
-// }
+//  component for form
+class AddNewTask extends React.Component{
+   render(){
+    return(
+      <section>
+      <form>
+        <label>
+          <h2>Add new task in list.</h2>
+        <input
+          type="text"
+          name="taskName" 
+          value={this.taskName} 
+          onChange={this.handelInputChange} 
+          placeholder="add task name." />
+        <input 
+          type="text" 
+          name="taskDesc" 
+          value={this.taskDesc} 
+          onChange={this.handelInputChange} 
+          placeholder="add task description." />
+        <button type="button" > Submit </button>
+        </label>
+      </form> 
+    </section>
+    );
+  }
+}
 
 
   // ========================================
